@@ -1,4 +1,4 @@
-# RAG retrieval audit — 2026-10-29
+# RAG retrieval audit, 2026-10-29
 
 Golden set: `queries.jsonl`, 30 queries (22 vault notes, 8 PDFs; 9 keyword, 21 paraphrase).
 A hit means a chunk from a gold file that contains the answer phrase, so the judgments hold
@@ -43,7 +43,7 @@ Rebuilt baseline with Fix 1 only: hit@8 0.900, MRR 0.736.)
 
 Caveat: n=30, so one query is worth 0.033. Only the Fix 1 and Fix 2 deltas are clearly above noise.
 
-## Native FTS (stored tsvector + GIN) + OR hybrid in SQL — deployed 2026-10-30
+## Native FTS (stored tsvector + GIN) + OR hybrid in SQL (deployed 2026-10-30)
 
 - `migrations/002_native_fts.sql`: `chunks.tsv` GENERATED ALWAYS AS
   (to_tsvector('english', chunk_text)) STORED + `idx_chunks_tsv` GIN;
@@ -62,7 +62,7 @@ Caveat: n=30, so one query is worth 0.033. Only the Fix 1 and Fix 2 deltas are c
   (bigger OR posting lists) but still far under the embedding call, and
   every query now gets a real FTS vote instead of 60% getting none.
 
-## Combined pass (Fix 2 + PDF 500w rechunk + Mistral-Small PDF summaries) — deployed 2026-10-29
+## Combined pass (Fix 2 + PDF 500w rechunk + Mistral-Small PDF summaries; deployed 2026-10-29)
 
 - `config.py`: `PDF_CHUNK_MAX` 2000→500, overlap 150→75. New `chunk_pdf()` wraps
   `chunk_pdf_pages` and prepends `[stem: 1-2 sentence summary]` (Mistral
