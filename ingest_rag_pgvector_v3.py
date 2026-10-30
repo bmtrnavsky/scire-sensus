@@ -561,7 +561,7 @@ def embed_input(text: str) -> str:
     Qwen3-Embedding takes an instruction on the query side only; documents
     are embedded raw. The old "search_document: " prefix was a nomic-embed
     leftover. Changing this changes every stored vector: after editing it,
-    re-embed everything (--clear-folder obsidian-vault, then
+    re-embed everything (--clear-folder <vault-folder>, then
     --clear-folder pgvector-rag-sources, then a normal run) so the index
     is never a mix of both styles.
     """

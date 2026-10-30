@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS research_projects (
     title TEXT NOT NULL,
     review_type TEXT NOT NULL,  -- systematic|scoping|critical|integrative|conceptual|case_study
     lens TEXT,                  -- academic|current_reality|balanced|combined
-    protocol JSONB,             -- Woodward's full protocol (research question, inclusion/exclusion, search strings)
+    protocol JSONB,             -- the full research protocol (research question, inclusion/exclusion, search strings)
     status TEXT DEFAULT 'active',
     created_at TIMESTAMPTZ DEFAULT now()
 );
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS research_source_files (
     year INTEGER,
     source_type TEXT,           -- peer_reviewed|grey_lit
     screening_status TEXT DEFAULT 'candidate',  -- candidate|included|excluded|paywalled
-    exclusion_reason TEXT,      -- ERR_NO_ARTIFACT etc, from Woodward's protocol
+    exclusion_reason TEXT,      -- ERR_NO_ARTIFACT etc, from the research protocol
     chunk_count INTEGER DEFAULT 0,
     metadata JSONB,
     last_ingested TIMESTAMPTZ,

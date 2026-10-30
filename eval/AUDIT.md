@@ -36,8 +36,8 @@ Rebuilt baseline with Fix 1 only: hit@8 0.900, MRR 0.736.)
 
 ## Deploy (not done; live index and server untouched)
 1. Restart the RAG Flask service. Fix 1 takes effect right away and is safe on the current index.
-2. Re-embed everything (Fix 2): `python ingest_rag_pgvector_v3.py --clear-folder obsidian-vault`,
-   then `--clear-folder pgvector-rag-sources`, then a normal run. Until this runs, any
+2. Re-embed everything (Fix 2): `python ingest_rag_pgvector_v3.py --clear-folder <vault-folder>`,
+   then `--clear-folder <pdf-folder>`, then a normal run. Until this runs, any
    incremental ingest writes un-prefixed vectors into a prefixed index.
 3. Re-run `python eval/run_eval.py --qprefix qwen --name live_after` and check hit@8 ≥ 0.967.
 

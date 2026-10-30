@@ -51,7 +51,7 @@ Live index, 30-query golden set, hybrid path unless noted. Full per-variant numb
 
 Not shipped (measured, rejected): OR-only FTS without re-embed (no net gain once Fix 2 landed, and slower on expression index), title prepending (MRR up but recall@8 down), 2000-word PDF chunks (mixed), `-layout` extraction (no recall gain), code-fence heading fix (no change on this set).
 
-Caveat: n=30, so treat small deltas as noise. Only the Fix 1, Fix 2, and rechunk/summary deltas are clearly above it.
+Caveat: n=30, so treat small deltas as noise. Only the Fix 1, Fix 2, and rechunk/summary deltas are clearly above it. (Zero-FTS counts differ across rows because the corpus grew between measurements: 14/30 at baseline, 18 after the Fix 2 re-embed.)
 
 ## Provenance
 
@@ -75,13 +75,14 @@ psql -d ragdb -c "CREATE EXTENSION vector;"
 # 2. Schema
 psql -d ragdb -f schema.sql
 psql -d ragdb -f research_schema.sql   # optional: isolated research corpus
-psql -d ragdb -f migrations/002_native_fts.sql
+psql -d ragdb -f migrations/002_native_fts.sql   # 001 was squashed into schema.sql
 
 # 3. Configure
 cp .env.example .env        # fill in DB_DSN + OPENROUTER_API_KEY
 # Point at your sources: VAULT_ROOT=~/my-notes PDF_ROOT_DIR=~/my-pdfs
 
-# 4. Install + ingest + serve
+# 4. Install + ingest + serve (Python 3.10+; a venv is recommended)
+python -m venv .venv && .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python ingest_rag_pgvector_v3.py
 python rag_flask_mcp.py     # listens on 127.0.0.1:5556
@@ -98,7 +99,6 @@ All tuning lives in `config.py`: embedding model/dims, chunk sizes, rerank model
 ```bash
 python -m unittest test_ingest_purge_guard -v   # no DB or network needed (13 tests: purge guards + end-to-end ingest with mocked DB)
 python -m unittest test_ocr_and_format -v       # needs Tesseract + poppler (10 tests: OCR fallback, result formatting, tesseract resolution)
-python test_rag.py                              # smoke test against a live index
 ```
 
 Unit suite status (2026-10-30, Windows bare metal): `test_ingest_purge_guard` 13/13 pass, `test_ocr_and_format` 10/10 pass with dependencies installed.

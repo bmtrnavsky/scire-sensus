@@ -481,10 +481,9 @@ MCP_TOOLS = [
         "name": "research_rag_search",
         "description": (
             "Hybrid search on the ISOLATED research pipeline staging table "
-            "(research_rag_chunks) -- Velma's staged/screened academic and "
+            "(research_rag_chunks) -- staged and screened academic and "
             "grey-lit papers, NOT the main vault/PDF corpus. Use this for any "
-            "query within the research team's pipeline (Woodward/Velma/Professor "
-            "X/Sherlock). Optional project_id scopes to one research thread."
+            "query within the research pipeline. Optional project_id scopes to one research thread."
         ),
         "inputSchema": {
             "type": "object",
@@ -508,7 +507,7 @@ MCP_TOOLS = [
         "description": (
             "Semantic vector-only search on the ISOLATED research pipeline "
             "staging table (research_rag_chunks). Same scope note as "
-            "research_rag_search -- this is Velma's staged papers, not the "
+            "research_rag_search -- these are staged papers, not the "
             "main vault corpus."
         ),
         "inputSchema": {

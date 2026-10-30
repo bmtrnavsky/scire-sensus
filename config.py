@@ -19,7 +19,7 @@ def _load_dotenv(path=Path(__file__).with_name(".env")):
 def _require(name):
     val = os.environ.get(name)
     if not val:
-        raise RuntimeError(f"Missing required env var {name} (set it or add it to rag/.env; see .env.example)")
+        raise RuntimeError(f"Missing required env var {name} (set it or add it to .env; see .env.example)")
     return val
 
 
