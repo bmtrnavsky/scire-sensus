@@ -2,7 +2,7 @@
 
 Personal knowledge RAG: ingest a Markdown vault + PDF library into Postgres/pgvector, then serve hybrid (vector + full-text, RRF fusion) search over HTTP for agent tools.
 
-*Scire sensus* — Latin for "to know through the senses / perception". A retrieval layer that lets an agent query what you have read and written.
+*Scire sensus* (SKEE-reh SEN-soos): Latin for "to know through the senses / perception". A retrieval layer that lets an agent query what you have read and written.
 
 ## How it works
 
