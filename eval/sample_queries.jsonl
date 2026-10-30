@@ -1,0 +1,5 @@
+{"id": "s01", "type": "paraphrase", "query": "Who first showed that snap judgments of soldiers looks biased intelligence ratings?", "gold_files": ["halo-effect.md"], "answer": ["1920"]}
+{"id": "s02", "type": "keyword", "query": "von Neumann stored program code data same memory", "gold_files": ["von-neumann-architecture.md"], "answer": ["same memory"]}
+{"id": "s03", "type": "paraphrase", "query": "Can any tool reliably decide in advance whether arbitrary code will halt?", "gold_files": ["halting-problem.md"], "answer": ["cannot decide"]}
+{"id": "s04", "type": "keyword", "query": "Bayes factor psychic die fair example", "gold_files": ["bayesian-statistics-guide.pdf"], "answer": ["psychic"]}
+{"id": "s05", "type": "paraphrase", "query": "What is the 10/20/30 rule for slide presentations?", "gold_files": ["presentation-kpis.pdf"], "answer": ["10/20/30"]}
